@@ -2,12 +2,13 @@ body{
     font-family: cursive;
 }
 header{
+    position: relative;
+    font-family: Open Sans;
     display: flex;
     flex-direction: row;
     padding-inline: 4rem;
     gap: 2rem;
     justify-content: space-between;
-    height: 7vh;
     background-color: gray;
 }
 header nav{
@@ -22,7 +23,6 @@ header nav a, h5{
     font-weight: 500;
     padding-inline: 1rem;
     padding-block: 0.3rem;
-    letter-spacing: 0.025rem;
     transition: all 0.5s ease;
 }
 header aside{
@@ -33,18 +33,20 @@ header aside{
     font-weight: 700;
     padding-inline: 1rem;
     padding-block: 0.3rem;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.01rem;
     transition: all 0.5s ease;
 }
 header nav a:hover{
     color: wheat;
 }
 
-h3{
-    font-size: 2rem;
+h3 {
+    padding-block: 2rem;
+    font-size: 3rem;
     text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Open Sans;
     letter-spacing: 0.05rem;
+    font-weight: 600;
 }
 h4{
     font-size: 1.5rem;
@@ -58,7 +60,8 @@ h5{
 main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
 }
 .contenedor_animales{
     width: 90%;
@@ -91,4 +94,92 @@ main{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+.app_logo{
+    background-image: url('../img/happy_cat2.png');
+    background-size: cover;
+    background-position: center;
+    height: 90%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+.login_form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.login_form:last-child() {
+    margin-top: 1rem;
+}
+button[type=submit], input[type=text], input[type=password], .button_submit{
+    border: 0.05rem solid black;
+    padding-inline: 0.5rem;
+    padding-block: 0.1rem;
+    border-radius: 0.5rem;
+}
+
+button[type=submit], .button_submit{
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    transition: all 0.25s ease-in;
+}
+button[type=submit]:hover, .button_submit:hover{
+    cursor: pointer;
+    background-color: #EFC603;
+    color: white;
+}
+i{
+    font-size: 1.5rem;
+}
+#busqueda{
+    width: 60%;
+}
+.mensaje_section {
+    position: absolute;
+    top: 0%; /* Start at the top of the viewport */
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 0.3rem;
+    opacity: 1;
+    z-index: -1;
+    transition: top 0.5s ease, opacity 0.5s ease;
+    animation-name: showMessage, hideMessage;
+    animation-duration: 1s, 1s;
+    animation-fill-mode: forwards, forwards;
+    animation-delay: 0s, 6s; /* 3-second delay before animation starts */
+}
+.contenedor_buscador{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Keyframes for animation */
+@keyframes showMessage {
+    0% {
+        top: 0%; /* Start position (top of the viewport) */
+        opacity: 0;
+    }
+    100% {
+        top: 100%; /* End position (below the viewport) */
+        opacity: 1;
+    }
+}
+@keyframes hideMessage {
+    from {
+        top: 100%; /* Start position (top of the viewport) */
+        opacity: 1;
+    }
+    to {
+        top: 0%; /* End position (below the viewport) */
+        opacity: 0;
+    }
 }

@@ -14,16 +14,16 @@ function populateIconClasses() {
 }
 function assignIcon(icon_element, icon_name){
     const icon_class = getIconClass(icon_name);
-    console.log(icon_name);
     icon_element.className = icon_class;
+    icon_element.setAttribute("data_icon_name","resolved by Icons.js");
 }
 function getIconClass(icon_name){
     if(!icons_dictionary){
         initDictionary();
     }
-    let icon_class= icons_dictionary[icon_name];
+    let icon_class = icons_dictionary[icon_name];
     if(!icon_class){
-        icon_class =icons_dictionary['question'];
+        icon_class = icons_dictionary['question'];
     }
     return icon_class;
 }
@@ -35,6 +35,7 @@ function initDictionary(){
         "question": "ri-question-mark",
         "logout": "ri-logout-box-r-line",
         "copy": "ri-file-copy-2-line",
+        "info-circle": "ri-information-line",
         "info-circle": "ri-information-line",
         "info-circle-fill": "ri-information-fill",
         "success": "ri-check-line",

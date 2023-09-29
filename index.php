@@ -7,8 +7,9 @@ if (isset($_GET['section'])) {
     // Si se proporciona en la URL, sobrescribe el valor de "section"
     $section = $_GET['section'];
 }
-include_once "connection/DBC.class.php";
-include_once "model/Animal.class.php";
+require_once "connection/DBC.class.php";
+require_once "model/Animal.class.php";
+require_once "model/Mensaje.class.php";
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +22,9 @@ include_once "model/Animal.class.php";
     <link rel='stylesheet' href="./client/css/styles.css">
     <script src="./client/js/Icons.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php

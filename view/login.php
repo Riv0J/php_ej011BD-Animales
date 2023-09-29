@@ -1,31 +1,49 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Se ha enviado un formulario POST, procesa los parámetros
-    if (isset($_POST['nombre']) && isset($_POST['pass'])) {
-        $nombre = $_POST['nombre'];
-        $pass = $_POST['pass'];
-
-        $bd = new DBC();
-        $redirect_url = '../view/login.php';
-        $usuario = $bd->validarCredenciales($nombre, $pass);
-        
-        if ($usuario != null) {
-            session_start();
-            $_SESSION['usuario'] = $usuario;
-            $redirect_url = '../index.php';
-        }
-
-        header('Location: ' . $redirect_url);
-        exit; // Termina el script después de redireccionar
-    } else {
-        // Faltan parámetros POST, puedes mostrar un mensaje de error si lo deseas
-        echo '<p>Datos incorrectos</p>';
+    $redirect_url = $_SERVER['PHP_SELF']. '?section=login';
+    $action = 'login';
+    if (isset($_GET['action'])){
+        $action = $_GET['action'];
     }
-}
+    switch($action){
+        case 'logout':
+            session_start();
+            if(isset($_SESSION['usuario'])){
+                $nombre=$_SESSION['usuario']->nombre;
+                unset($_SESSION['usuario']);
+            }
+            $_SESSION['mensaje'] = new Mensaje('Esperamos verte pronto, adiós '.$nombre.'!','success');
+            $redirect_url = 'index.php';
+            header('Location: ' . $redirect_url);
+            break;
+        case 'login':
+            if (isset($_POST['nombre']) && isset($_POST['pass'])) {
+                $nombre = $_POST['nombre'];
+                $pass = $_POST['pass'];
+
+                $bd = new DBC();
+                $usuario = $bd->validarCredenciales($nombre, $pass);
+                
+                if ($usuario != null) {
+                    session_start();
+                    $_SESSION['usuario'] = $usuario;
+                    $redirect_url = 'index.php';
+                    $_SESSION['mensaje'] = new Mensaje('Bienvenido '.$nombre.'!','success');
+
+                } else{
+                    $_SESSION['mensaje'] = new Mensaje('Datos incorrectos bb','error');
+                }
+
+                header('Location: ' . $redirect_url);
+            }
+            break;
+        default:
+            break;
+    }
 ?>
 
 <h3> Login </h3>
-<form action="/verificar_login.php" method='POST'>
+<form action="<?php echo $_SERVER['PHP_SELF']. '?section=login'; ?>" method='POST' class="login_form">
     <label for="nombre">Nombre</label>
     <input type="text" name="nombre">
     <label for="pass">Contraseña</label> <!-- Cambiado de "nombre" a "pass" -->
