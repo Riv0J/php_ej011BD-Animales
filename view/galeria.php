@@ -1,17 +1,8 @@
-<?php
-$busqueda = '';
-if(isset($_GET['busqueda'])){
-    $busqueda = $_GET['busqueda'];
-}
-$bd=new DBC();
-$array_animales = $bd->getAnimales($busqueda);
-
-?>
 <h3> Galería </h3>
 <form class="contenedor_buscador">
     <label for="busqueda">Buscar animalito por apodo! o   <a class="button_submit" href='index.php'>Ver todos los animalitos</a></label>
-    <?php echo "<input type='text' name='busqueda' id='busqueda' value='".$busqueda."'>" ?>
-    <button type="submit">Buscar</button>
+    <div class="contenedor_busqueda"><?php echo "<input type='text' name='busqueda' id='busqueda' value='".$busqueda."'>" ?> <button type="submit">Buscar</button></div>
+    
 </form>
 <section class="contenedor_animales">
     <?php

@@ -69,3 +69,7 @@ function initDictionary(){
         "contrast-fill":"ri-contrast-fill"
     };
 }
+document.addEventListener("DOMContentLoaded", function() {
+    // El código dentro de esta función se ejecutará después de que se cargue el HTML
+    populateIconClasses();
+});

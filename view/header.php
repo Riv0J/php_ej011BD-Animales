@@ -8,7 +8,6 @@
 ?>
 <header>
         <aside>
-            
             Animalit<div class="app_logo"></div>s.com
         </aside>
         <nav>

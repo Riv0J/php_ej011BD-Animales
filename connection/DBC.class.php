@@ -13,16 +13,20 @@
             $this->conectar();
         }
 
-        function conectar(){
-            $this->conexion=mysqli_connect(self::HOST, self::USER, self::PASS,self::BD) or die("Error al ejecutar");
-            //echo "Conectado!!!";
-            //echo "<br>";
-        }
 
+        public function conectar() {
+            $this->conexion = mysqli_connect(self::HOST, self::USER, self::PASS, self::BD);
+            if (!$this->conexion) {
+                die("Error al ejecutar: " . mysqli_connect_error());
+                return false; // Indicar que la conexión falló
+            }
+            return true;
+        }
         function desconectar(){
-            mysql_close($this->conexion);
+            mysqli_close($this->conexion);
         }
         function sql_query($sql_select_query){
+            //inferir el tipo de de sql_query
             $tipoSQL = substr($sql_select_query,0,6);
             $result=mysqli_query($this->conexion,$sql_select_query);
             if (strtoupper($tipoSQL)=="SELECT") {
@@ -31,12 +35,6 @@
             } else {
                 //delete, update, insert...
             }
-        }
-        function executeInsert($sql_insert){
-
-        }
-
-        function getAnimal($id_animal){
         }
         function validarCredenciales($nombre, $pass){
             $result=$this->sql_query("SELECT * from usuarios WHERE nombre = '".$nombre."' and pass = '".$pass."';");
@@ -50,7 +48,7 @@
         function getAnimales($busqueda){
             $sql_query = "select * from animales";
             if($busqueda!=''){
-                $sql_query = $sql_query." where apodo like '%".$busqueda."%'";
+                $sql_query = $sql_query." where apodo like '%".$busqueda."%';";
             }
             $result=$this->sql_query($sql_query.';');
             $animales = array();
@@ -61,6 +59,17 @@
             }
             return $animales;
 
+        }
+
+
+        public static function getNewConnection() {
+            $dbc = new DBC();
+            $conexion_exitosa = $dbc->conectar();
+            if ($conexion_exitosa === true) { // Verificar si la conexión se estableció correctamente
+                return $dbc;
+            } else {
+                return null;
+            }
         }
     }
 ?>
