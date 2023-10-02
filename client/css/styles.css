@@ -3,6 +3,9 @@ body{
 }
 header{
     position: relative;
+    isolation: isolate;
+}
+#header_wrapper{
     font-family: Open Sans;
     display: flex;
     flex-direction: row;
@@ -10,22 +13,24 @@ header{
     gap: 2rem;
     justify-content: space-between;
     background-color: gray;
+    z-index: 1000;
 }
-header nav{
+
+#header_wrapper nav{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
-header nav a, h5{
+#header_wrapper nav a, h5{
     font-size: 1.5rem;
     font-weight: 500;
     padding-inline: 1rem;
     padding-block: 0.3rem;
     transition: all 0.5s ease;
 }
-header aside{
+#header_wrapper aside{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +41,7 @@ header aside{
     letter-spacing: 0.01rem;
     transition: all 0.5s ease;
 }
-header nav a:hover{
+#header_wrapper nav a:hover{
     color: wheat;
 }
 
@@ -74,12 +79,16 @@ main{
     padding-block: 2rem;
 }
 .carta_animal{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 15rem;
     gap: 1rem;
+    background-color: rgb(211, 255, 238);
+    border-radius: 1rem;
+    border: 0.1rem solid rgb(192, 192, 192);
 }
 .carta_animal img{
     background-color: gray;
@@ -128,6 +137,9 @@ button[type=submit]:hover, .button_submit:hover{
     background-color: #EFC603;
     color: white;
 }
+a{
+    transition: all 0.25s ease-in-out;
+}
 i{
     font-size: 1.5rem;
 }
@@ -172,7 +184,32 @@ i{
     align-items: center;
     gap: 1rem;
 }
-
+.admin_menu{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+.admin_menu > a{
+    border-radius: 0.5rem;
+    padding-inline: 0.5rem;
+}
+button[value='delete'],button[value='edit']{
+    font-family: sans-serif;
+    font-weight: 200;
+}
+button[value='delete']{
+    background-color: rgb(255, 70, 70);
+    color: whitesmoke;
+}
+button[value='edit']{
+    background-color: rgb(184, 246, 255);
+    color: black;
+}
 /* Keyframes for animation */
 @keyframes showMessage {
     0% {

@@ -15,7 +15,14 @@
             echo "<h4>$animal->apodo</h4>";
             echo "<div class='icon_title'> Color <i data_icon_name='contrast-fill' style='color: $animal->color;'></i> </div>";
             echo "<h5>~ $animal->sonido</h5>";
+            if ($usuario != null){
+                echo "<form action = 'index.php?section=edit_animal' method='POST' class='admin_menu'>";
+                echo "<input type='hidden' name='id_animal' value='$animal->id'>";
+                echo "<button class='icon_title' type='submit' name='action' value='delete'><i data_icon_name='delete'></i></button>";
+                echo "</form>";
+            }
             echo"</div>";
+            
         }
     } else{
         echo "<div class='carta_animal'>";

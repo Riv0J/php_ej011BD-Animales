@@ -27,12 +27,14 @@
         }
         function sql_query($sql_select_query){
             //inferir el tipo de de sql_query
-            $tipoSQL = substr($sql_select_query,0,6);
+            $tipoSQL = strtoupper(substr($sql_select_query,0,6));
             $result=mysqli_query($this->conexion,$sql_select_query);
-            if (strtoupper($tipoSQL)=="SELECT") {
+            if ($tipoSQL==="SELECT") {
                 //Bidireccional
                 return $result;
             } else {
+                var_dump($result);
+                return true;
                 //delete, update, insert...
             }
         }

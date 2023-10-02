@@ -1,12 +1,14 @@
 <?php
     $login_header_content = "<a href='index.php?section=login'>Login</a>";
     session_start();
+    $usuario = null;
     if(isset($_SESSION['usuario'])){
         $usuario = $_SESSION['usuario'];
         $login_header_content = "<a class='icon_title' href='index.php?section=login&action=logout'><i data_icon_name='logout'></i>Hola ".$usuario->nombre.", ¿quieres cerrar sesión?</a>";
     }
 ?>
 <header>
+    <div id="header_wrapper">
         <aside>
             Animalit<div class="app_logo"></div>s.com
         </aside>
@@ -17,7 +19,8 @@
             <?php echo $login_header_content ?>
 
         </nav>
-        <?php
+    </div>
+    <?php
             if(isset($_SESSION['mensaje'])){
                 $mensaje = $_SESSION['mensaje'];
                 unset($_SESSION['mensaje']);
@@ -25,5 +28,5 @@
             } else{
                 //echo "<section class='mensaje_section'> No Messages :) </section>";
             }
-        ?>
+    ?>
 </header>

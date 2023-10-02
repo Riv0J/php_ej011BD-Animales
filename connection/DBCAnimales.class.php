@@ -22,6 +22,16 @@
             return $animales;
 
         }
+        public static function deleteAnimal($id_animal){
+            $dbc = DBC::getNewConnection();
+            if(!$dbc){
+                return null;
+            }
+            $sql_query = "delete from animales where id = '".$id_animal."';";
+            $result=$dbc->sql_query($sql_query);
+            $dbc->desconectar();
+            return $result;
+        }
 
     }
 
