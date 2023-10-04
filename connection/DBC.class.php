@@ -30,12 +30,9 @@
             $tipoSQL = strtoupper(substr($sql_select_query,0,6));
             $result=mysqli_query($this->conexion,$sql_select_query);
             if ($tipoSQL==="SELECT") {
-                //Bidireccional
                 return $result;
             } else {
-                var_dump($result);
-                return true;
-                //delete, update, insert...
+                return $result;
             }
         }
         function validarCredenciales($nombre, $pass){

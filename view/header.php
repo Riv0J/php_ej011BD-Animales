@@ -13,12 +13,19 @@
             Animalit<div class="app_logo"></div>s.com
         </aside>
         <nav>
+            <?php 
+            if ($usuario!=null){
+                include 'panel_admin.php';
+            }
+            ?>
+
             <a href='index.php'>
                 Galería
             </a>
             <?php echo $login_header_content ?>
 
         </nav>
+        
     </div>
     <?php
             if(isset($_SESSION['mensaje'])){

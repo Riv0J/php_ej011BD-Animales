@@ -67,7 +67,8 @@ function initDictionary(){
         "css3":"ri-css3-line",
         "js":"ri-javascript-line",
         "java":"ri-javascript-fill",
-        "contrast-fill":"ri-contrast-fill"
+        "contrast-fill":"ri-contrast-fill",
+        "refresh": "ri-refresh-line"
     };
 }
 document.addEventListener("DOMContentLoaded", function() {

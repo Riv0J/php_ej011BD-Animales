@@ -120,11 +120,11 @@ main{
 .login_form:last-child() {
     margin-top: 1rem;
 }
-button[type=submit], input[type=text], input[type=password], .button_submit{
+button[type=submit], input:not([type="color"]), .button_submit{
     border: 0.05rem solid black;
-    padding-inline: 0.5rem;
-    padding-block: 0.1rem;
-    border-radius: 0.5rem;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    border-radius: 0.4rem;
 }
 
 button[type=submit], .button_submit{
@@ -206,9 +206,23 @@ button[value='delete']{
     background-color: rgb(255, 70, 70);
     color: whitesmoke;
 }
-button[value='edit']{
+button[value='edit_animal_section']{
     background-color: rgb(184, 246, 255);
     color: black;
+}
+button[value='add']{
+    background-color: rgb(176, 255, 180);
+    color: rgb(0, 0, 0);
+}
+#panel_admin{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+#panel_admin > button{
+    height: 2.5rem;
 }
 /* Keyframes for animation */
 @keyframes showMessage {

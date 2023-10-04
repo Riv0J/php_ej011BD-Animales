@@ -1,3 +1,13 @@
+<?php 
+if(isset($animalito) && $animalito != null){
+    var_dump($animalito);
+}
+if(isset($consulta) && $consulta != null){
+    echo $consulta;
+}
+
+
+?>
 <h3> Galería </h3>
 <form class="contenedor_buscador">
     <label for="busqueda">Buscar animalito por apodo! o   <a class="button_submit" href='index.php'>Ver todos los animalitos</a></label>
@@ -19,6 +29,7 @@
                 echo "<form action = 'index.php?section=edit_animal' method='POST' class='admin_menu'>";
                 echo "<input type='hidden' name='id_animal' value='$animal->id'>";
                 echo "<button class='icon_title' type='submit' name='action' value='delete'><i data_icon_name='delete'></i></button>";
+                echo "<button class='icon_title' type='submit' name='action' value='edit_animal_section'><i data_icon_name='edit'></i></button>";
                 echo "</form>";
             }
             echo"</div>";
@@ -31,6 +42,5 @@
         echo "<a class='button_submit' href='index.php'>Ver todos los animalitos</a></label>";
         echo"</div>";
     }
-
     ?>
 </section>
