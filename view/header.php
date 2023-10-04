@@ -4,7 +4,7 @@
     $usuario = null;
     if(isset($_SESSION['usuario'])){
         $usuario = $_SESSION['usuario'];
-        $login_header_content = "<a class='icon_title' href='index.php?section=login&action=logout'><i data_icon_name='logout'></i>Hola ".$usuario->nombre.", ¿quieres cerrar sesión?</a>";
+        $login_header_content = "<a class='icon_title' href='index.php?section=login&action=logout'><i data_icon_name='logout'></i>Cerrar sesión</a>";
     }
 ?>
 <header>
@@ -18,20 +18,15 @@
                 include 'panel_admin.php';
             }
             ?>
-
-            <a href='index.php'>
-                Galería
-            </a>
+            <a href='index.php'>Galería</a>
             <?php echo $login_header_content ?>
-
         </nav>
-        
     </div>
     <?php
             if(isset($_SESSION['mensaje'])){
                 $mensaje = $_SESSION['mensaje'];
                 unset($_SESSION['mensaje']);
-                echo "<section class='mensaje_section'><div class='icon_title'><i data_icon_name='" . $mensaje->icon_name . "'></i>" . $mensaje->texto . "</div></section>";
+                echo "<section class='mensaje_section'><div class='icon_title'><i data_icon_name='".$mensaje->icon_name."'></i>".$mensaje->texto."</div></section>";
             } else{
                 //echo "<section class='mensaje_section'> No Messages :) </section>";
             }

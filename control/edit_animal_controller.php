@@ -34,6 +34,7 @@ switch($action){
         break;
     case 'edit_animal_section':
         $animal =  DBCAnimales::getAnimalById($id_animal);
+        $img_url_options_array = DBCAnimales::getImg_url_options();
         if($animal != null){
             include "view/edit_animal.php";
         } else{
@@ -61,27 +62,44 @@ switch($action){
             $animal->color = $_POST['color'];
             $editado = true;
         }
-        $animalito = $animal;
-        //$consulta = "UPDATE animales SET apodo = '$animal->apodo', patas = $animal->patas WHERE id = $animal->id";
+        if(isset($_POST['activo']) && $_POST['activo'] != ""){
+            $animal->activo = $_POST['activo'];
+            $editado = true;
+        }
+        if(isset($_POST['img_url']) && $_POST['img_url'] != ""){
+            $animal->img_url = $_POST['img_url'];
+            $editado = true;
+        } else{
+            $animal->img_url = 'default.png';
+        }
+
+        $id = $animal->id;
+        $apodo = $animal->apodo;
+        $patas = $animal->patas;
+        $color = $animal->color;
+        $activo = $animal->activo;
+        $img_url = $animal->img_url;
+
+        $consulta = "UPDATE animales SET apodo = '".$animal->apodo."', img_url = '".$animal->img_url."', color = '".$animal->color."', patas = ".$animal->patas.", activo = ".$animal->activo."  WHERE id = ".$animal->id.";";
         
         if($editado == true){
-            $success = DBCAnimales::updateAnimal($animal);
+            $success = DBCAnimales::updateAnimal($animal, $consulta);
             if($success === true){
-                $_SESSION['mensaje'] = new Mensaje('Animalito actualizado', 'success');
+                $_SESSION['mensaje'] = new Mensaje('Animalito actualizado '. $consulta, 'success');
             } else {
                 $_SESSION['mensaje'] = new Mensaje('No se ha podido actualizar el animalito');
             }
         } else {
-            $_SESSION['mensaje'] = new Mensaje('Los campos son iguales que antes', 'success');
+            $_SESSION['mensaje'] = new Mensaje('Los campos son iguales que antes, no se ha hecho ningún cambio', 'success');
         }
         
         break;
     case 'cancel';
+        $_SESSION['mensaje'] = new Mensaje('Edit animal cancelado', 'success');
         break;
     default:
         break;
 }
 header('Location: index.php?section='.$redirect_section);
 //include "view/galeria.php";
-
 ?>

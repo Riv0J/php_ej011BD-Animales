@@ -1,12 +1,7 @@
-<?php 
-if(isset($animalito) && $animalito != null){
-    var_dump($animalito);
+<?php
+if(isset($consulta)){
+    var_dump($consulta);
 }
-if(isset($consulta) && $consulta != null){
-    echo $consulta;
-}
-
-
 ?>
 <h3> Galería </h3>
 <form class="contenedor_buscador">

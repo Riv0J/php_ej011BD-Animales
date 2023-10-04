@@ -120,11 +120,14 @@ main{
 .login_form:last-child() {
     margin-top: 1rem;
 }
-button[type=submit], input:not([type="color"]), .button_submit{
+button[type=submit], input:not([type="color"]), .button_submit, select{
     border: 0.05rem solid black;
     padding-inline: 1rem;
     padding-block: 0.3rem;
     border-radius: 0.4rem;
+}
+select{
+    padding-right: 0;
 }
 
 button[type=submit], .button_submit{
@@ -244,4 +247,22 @@ button[value='add']{
         top: 0%; /* End position (below the viewport) */
         opacity: 0;
     }
+}
+
+.edit_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.5rem
+}
+
+.edit_menu h3 {
+    text-align: left;
+}
+.form_submit_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
 }
