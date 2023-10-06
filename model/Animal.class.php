@@ -9,9 +9,9 @@ class Animal{
     public $sonido;
     public $img_url;
     public $activo;
-
+    public $nombre_usuario;
     //constructor<
-    public function __construct($id, $apodo, $color,$patas, $sonido, $img_url, $activo){
+    public function __construct($id, $apodo, $color,$patas, $sonido, $img_url, $activo, $nombre_usuario){
         $this->id = $id;
         $this->apodo = $apodo;
         $this->color = $color;
@@ -19,6 +19,7 @@ class Animal{
         $this->sonido = $sonido;
         $this->img_url = $img_url;
         $this->activo = $activo;
+        $this->nombre_usuario = $nombre_usuario;
 
     }
 

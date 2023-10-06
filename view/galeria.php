@@ -1,13 +1,16 @@
+
 <?php
-if(isset($consulta)){
-    var_dump($consulta);
+if(!(isset($busqueda))){
+    $busqueda = null;
 }
 ?>
-<h3> Galería </h3>
+<h3>Galería</h3>
 <form class="contenedor_buscador">
-    <label for="busqueda">Buscar animalito por apodo! o   <a class="button_submit" href='index.php'>Ver todos los animalitos</a></label>
-    <div class="contenedor_busqueda"><?php echo "<input type='text' name='busqueda' id='busqueda' value='".$busqueda."'>" ?> <button type="submit">Buscar</button></div>
-    
+    <!--<label for="busqueda">Buscar animalito por apodo! o   </label>-->
+    <div class="contenedor_busqueda"><?php echo "<input type='text' name='busqueda' id='busqueda' value='".$busqueda."' placeholde='Buscar animal por apodo'>" ?> 
+    <button type="submit">Buscar</button>
+    <a class="button_submit" href='index.php'>Ver todos</a>
+    </div>
 </form>
 <section class="contenedor_animales">
     <?php
@@ -15,20 +18,17 @@ if(isset($consulta)){
     if($cantidad >0){
         for ($i=0; $i<$cantidad; $i++){
             $animal = $array_animales[$i];
+            $owner = "Desconocido";
             echo "<div class='carta_animal'>";
-            echo "<img src='$animal->img_url'>";
+            echo "<img src='$animal->img_url' style='outline: 0.2rem solid  $animal->color;'>";
             echo "<h4>$animal->apodo</h4>";
-            echo "<div class='icon_title'> Color <i data_icon_name='contrast-fill' style='color: $animal->color;'></i> </div>";
-            echo "<h5>~ $animal->sonido</h5>";
-            if ($usuario != null){
-                echo "<form action = 'index.php?section=edit_animal' method='POST' class='admin_menu'>";
-                echo "<input type='hidden' name='id_animal' value='$animal->id'>";
-                echo "<button class='icon_title' type='submit' name='action' value='delete'><i data_icon_name='delete'></i></button>";
-                echo "<button class='icon_title' type='submit' name='action' value='edit_animal_section'><i data_icon_name='edit'></i></button>";
-                echo "</form>";
+            if($animal->nombre_usuario!=null){
+                $owner = $animal->nombre_usuario;
+                echo "<a href='index.php?section=perfil&action=ver&nombre_usuario=$owner'><button class='icon_title_no_gap' type='submit'><i data_icon_name='github'></i><h5>Creado por: $owner</h5></button></a>";
+            } else {
+                echo "<h5>Creado por: $owner</h5>";
             }
             echo"</div>";
-            
         }
     } else{
         echo "<div class='carta_animal'>";

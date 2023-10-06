@@ -14,7 +14,7 @@ if(isset($img_url_options_array)){
     <input type='color' name='color' value='Black'>
     <label for='activo'>Activo:</label>
     <input type='number' name='activo' value='1'>
-    <label for='sonido'>Activo:</label>
+    <label for='sonido'>Sonido:</label>
     <input type='text' name='sonido' value='Auuu'>
     <label for='img_url'>Imagen</label>
     <select name="img_url">

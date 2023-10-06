@@ -68,7 +68,8 @@ function initDictionary(){
         "js":"ri-javascript-line",
         "java":"ri-javascript-fill",
         "contrast-fill":"ri-contrast-fill",
-        "refresh": "ri-refresh-line"
+        "refresh": "ri-refresh-line",
+        "github": "ri-github-line"
     };
 }
 document.addEventListener("DOMContentLoaded", function() {

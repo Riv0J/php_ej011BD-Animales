@@ -9,5 +9,6 @@ $bd=new DBC();
 $array_animales = DBCAnimales::getAnimalitos($busqueda);
 
 //Reenviar esos recursos a la vista view_inicio
+$buscador = true;
 include "view/galeria.php";
 ?>

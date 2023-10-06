@@ -5,7 +5,7 @@ if(isset($_SESSION['usuario']) == false || $_SESSION['usuario'] == null){
     header('Location: index.php?section=login');
     exit();
 }
-
+$usuario = $_SESSION['usuario'];
 $action = '';
 if(isset($_POST['action'])){
     $action = $_POST['action'];
@@ -14,7 +14,7 @@ if(isset($_POST['action'])){
 $success = false;
 switch($action){
     case 'reset_animales':
-        $success = DBCAnimales::resetAnimalitos($id_animal);
+        $success = DBCAnimales::resetAnimalitos();
         if($success === true){
             $_SESSION['mensaje'] = new Mensaje('¡Todos los animalitos activo = 1!', 'success');
         } else {
@@ -48,7 +48,7 @@ switch($action){
         if(isset($_POST['img_url']) && $_POST['img_url'] != ""){
             $img_url = $_POST['img_url'];
         }
-        $success = DBCAnimales::insertAnimal($apodo, $patas, $color, $sonido, $img_url);
+        $success = DBCAnimales::insertAnimal($apodo, $patas, $color, $sonido, $img_url, $usuario->nombre);
         if($success === true){
             $_SESSION['mensaje'] = new Mensaje('Nuevo animalito creado', 'success');
         } else {

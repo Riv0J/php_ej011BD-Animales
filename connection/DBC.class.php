@@ -32,11 +32,12 @@
             if ($tipoSQL==="SELECT") {
                 return $result;
             } else {
+                //si la consulta de insert, update, delete entonces devuelve true/false
                 return $result;
             }
         }
         function validarCredenciales($nombre, $pass){
-            $result=$this->sql_query("SELECT * from usuarios WHERE nombre = '".$nombre."' and pass = '".$pass."';");
+            $result=$this->sql_query("SELECT * from usuarios WHERE nombre = '".$nombre."' and pass = md5('".$pass."');");
             $fila = mysqli_fetch_array($result);
             if($fila != null){
                 extract($fila);
@@ -44,23 +45,6 @@
             }
             return null;
         }
-        function getAnimales($busqueda){
-            $sql_query = "select * from animales";
-            if($busqueda!=''){
-                $sql_query = $sql_query." where apodo like '%".$busqueda."%';";
-            }
-            $result=$this->sql_query($sql_query.';');
-            $animales = array();
-            while (($fila = mysqli_fetch_array($result)) != null) {
-                extract($fila); //extraer todas las claves del mapa, y que existan las variables
-                $animal = new Animal($id, $apodo, $color, $patas, $sonido, 'client/img/' .$img_url);
-                $animales[] = $animal;
-            }
-            return $animales;
-
-        }
-
-
         public static function getNewConnection() {
             $dbc = new DBC();
             $conexion_exitosa = $dbc->conectar();

@@ -1,10 +1,10 @@
 <?php
-    $login_header_content = "<a href='index.php?section=login'>Login</a>";
+    $login_header_content = "<a href='index.php?section=login'>Login</a> <a href='index.php?section=register'>Registrarse</a>";
     session_start();
     $usuario = null;
     if(isset($_SESSION['usuario'])){
         $usuario = $_SESSION['usuario'];
-        $login_header_content = "<a class='icon_title' href='index.php?section=login&action=logout'><i data_icon_name='logout'></i>Cerrar sesión</a>";
+        $login_header_content = "<a href='index.php?section=perfil&action=ver&nombre_usuario=$usuario->nombre'><i data_icon_class='user'></i>Mi perfil</a><a class='icon_title' href='index.php?section=login&action=logout'><i data_icon_name='logout'></i></a>";
     }
 ?>
 <header>
@@ -28,7 +28,7 @@
                 unset($_SESSION['mensaje']);
                 echo "<section class='mensaje_section'><div class='icon_title'><i data_icon_name='".$mensaje->icon_name."'></i>".$mensaje->texto."</div></section>";
             } else{
-                //echo "<section class='mensaje_section'> No Messages :) </section>";
+                //echo "<section class='mensaje_section'> No Messages : </section>";
             }
     ?>
 </header>
